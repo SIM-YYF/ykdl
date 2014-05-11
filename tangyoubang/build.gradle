@@ -1,0 +1,103 @@
+apply plugin: 'android'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.3"
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        tybConfig{
+            storeFile file("tangyoubang.store")
+            storePassword "tangyoubang"
+            keyAlias "tangyoubang"
+            keyPassword "tangyoubang"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig  signingConfigs.tybConfig
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+
+        }
+
+    }
+
+    packagingOptions{
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/INDEX.LIST'
+    }
+    lintOptions{
+        abortOnError false
+        ignoreWarnings true
+    }
+
+    productFlavors {
+/*        playstore {
+            packageName='com.ykdl.tangyoubang.playstore'
+        }
+        hiapk {
+            packageName='com.ykdl.tangyoubang.amazonappstore'
+        }*/
+    }
+
+    sourceSets {
+/*        hiapk {
+            manifest.srcFile 'hiapk/AndroidManifest.xml'
+        }
+
+        playstore {
+            manifest.srcFile 'playstore/AndroidManifest.xml'
+        }*/
+    }
+
+}
+
+tasks.withType(GroovyCompile) {
+    groovyOptions.encoding = "MacRoman"
+}
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:gridlayout-v7:19.0.1'
+    compile 'com.android.support:support-v4:19.0.1'
+    compile 'com.android.support:appcompat-v7:19.0.1'
+    compile files('libs/androidannotations-api-3.0.1.jar')
+    compile files('libs/codemodel-2.4.1.jar')
+    compile files('libs/eventbus-2.2.0.jar')
+    compile files('libs/snappydb-api-0.2.0.jar')
+    apt "org.androidannotations:androidannotations:3.0.1"
+    compile files('libs/spring-android-auth-1.0.1.RELEASE.jar')
+    compile files('libs/spring-android-core-1.0.1.RELEASE.jar')
+    compile files('libs/spring-android-rest-template-1.0.1.RELEASE.jar')
+    compile files('libs/spring-asm-3.0.7.RELEASE.jar')
+    compile files('libs/spring-security-crypto-3.1.3.RELEASE.jar')
+    compile files('libs/spring-social-core-1.0.2.RELEASE.jar')
+    compile files('libs/jackson-annotations-2.4.0-rc4-20140508.205948-1.jar')
+    compile files('libs/jackson-core-2.4.0-rc4-20140509.050732-4.jar')
+    compile files('libs/jackson-databind-2.4.0-20140426.193219-112.jar')
+    compile files('libs/jackson-all-1.9.11.jar')
+    compile files('libs/gson-2.2.4.jar')
+}
+
+
+apt {
+    arguments {
+        androidManifestFile variant.processResources.manifestFile
+        resourcePackageName 'com.ykdl.tangyoubang'
+    }
+}
