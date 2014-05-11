@@ -26,6 +26,7 @@ public class AppService {
     public void getUser(){
         String json = api.getUser();
         BUS.post(new UserEvent(json).builder());
+        System.out.print("");
     }
 
 
