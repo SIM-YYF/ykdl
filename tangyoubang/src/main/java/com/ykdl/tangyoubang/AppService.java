@@ -24,7 +24,7 @@ public class AppService {
 
     @Background
     public void getUser(){
-        String json = api.getUser();
+        String json = api.getUser("android");
         BUS.post(new UserEvent(json).builder());
     }
 
