@@ -42,8 +42,7 @@ import java.util.Set;
  */
 @Rest(rootUrl = "https://ajax.googleapis.com",converters = {MappingJackson2HttpMessageConverter.class, GsonHttpMessageConverter.class, FormHttpMessageConverter.class, ByteArrayHttpMessageConverter
 .class, StringHttpMessageConverter.class},interceptors = {HttpBasicAuthenticatorInterceptor.class})
-public  interface TybApi extends RestClientRootUrl, RestClientHeaders,RestClientSupport,RestClientErrorHandling {
+public  interface TybApi extends RestClientHeaders,RestClientSupport,RestClientErrorHandling {
     @Get("/ajax/services/search/web?v=1.0&q={query}")
     String getUser(String query);
-
 }

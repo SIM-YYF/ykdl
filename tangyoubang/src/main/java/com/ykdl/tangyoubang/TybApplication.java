@@ -19,5 +19,4 @@ public class TybApplication extends Application {
         super.onCreate();
     }
 
-
 }

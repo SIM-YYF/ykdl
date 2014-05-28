@@ -3,24 +3,22 @@ package com.ykdl.tangyoubang;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
 import com.snappydb.SnappydbException;
-import com.ykdl.tangyoubang.Event.UserEvent;
-import com.ykdl.tangyoubang.RestClient.Handler.TybRestErrorHandler;
+import com.ykdl.tangyoubang.Events.UserEvent;
 import com.ykdl.tangyoubang.RestClient.TybApi;
 
 import org.androidannotations.annotations.App;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
@@ -45,17 +43,14 @@ public class MainActivity extends Activity {
     @Bean
     AppService service;
 
+    @RootContext
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-//            tybApi.setHeader("head1", "a");
-//            tybApi.setHeader("head2", "b");
-//            tybApi.getUser();
-
-
-           DB snappydb = DBFactory.open(this);
-
+             DB snappydb = DBFactory.open(this);
             snappydb.put("name", "Jack Reacher");
             snappydb.putInt("age", 42);
             snappydb.putBoolean("single", true);
@@ -76,7 +71,7 @@ public class MainActivity extends Activity {
 
     @UiThread
     public void onEvent(UserEvent userEvent){
-        Toast.makeText(this, userEvent.getJson(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, userEvent.getUser(), Toast.LENGTH_LONG).show();
     }
     @Click(R.id.btn_get)
     public void mybutton(){
