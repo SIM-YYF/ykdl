@@ -10,10 +10,8 @@ import java.util.Objects;
 @EBean
 public class Cache {
     public static enum CacheKey { USER, Goods }
-    public <T> T get(CacheKey key, Class<T> returnType) {
-
-        return "sdfas";
-    }
+//    public <T> T get(CacheKey key, Class<T> returnType) {
+//    }
     public void put(CacheKey key, Object value) {
 
     }

@@ -66,9 +66,9 @@ public class Rest {
     private void initializeHeaders() {
         httpBaseHeaders = new HttpHeaders();
 //        httpHeaders.setAuthorization(authHeader);
-        httpBaseHeaders.setContentType(MediaType.ALL);
-        httpBaseHeaders.setAccept(Collections.singletonList(MediaType.ALL));
-        httpBaseHeaders.setAcceptEncoding(ContentCodingType.ALL);
+//        httpBaseHeaders.setContentType(MediaType.ALL);
+//        httpBaseHeaders.setAccept(Collections.singletonList(MediaType.ALL));
+//        httpBaseHeaders.setAcceptEncoding(ContentCodingType.ALL);
     }
 
     /**
@@ -98,8 +98,8 @@ public class Rest {
             public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
                 ClientHttpRequest delegate = factory.createRequest(request.getURI(), request.getMethod());
                 delegate.getHeaders().putAll(request.getHeaders());
-                delegate.getHeaders().putAll(callback.getCommHeaders());//设置公用的头信息
-                delegate.getHeaders().putAll(requestHeaders);//设置请求的头信息
+               // delegate.getHeaders().putAll(callback.getCommHeaders());//设置公用的头信息
+              //  delegate.getHeaders().putAll(requestHeaders);//设置请求的头信息
                 if (body.length > 0) {
                     FileCopyUtils.copy(body, delegate.getBody());
                 }

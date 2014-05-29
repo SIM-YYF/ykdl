@@ -3,7 +3,6 @@ package com.ykdl.tangyoubang;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -11,14 +10,18 @@ import android.widget.Toast;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
 import com.snappydb.SnappydbException;
-import com.ykdl.tangyoubang.Events.UserEvent;
-import com.ykdl.tangyoubang.RestClient.TybApi;
+import com.ykdl.net.Client.RestHelper;
+import com.ykdl.tangyoubang.model.BaseEvent;
+import com.ykdl.tangyoubang.model.CaptchaEvent;
+import com.ykdl.tangyoubang.model.UserEvent;
+import com.ykdl.tangyoubang.Rest.TybApi;
 
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.App;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
@@ -26,58 +29,33 @@ import org.androidannotations.annotations.rest.RestService;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends Activity {
-
-
-    String[] books;// get array of string
-    String   name = null;
-
     @ViewById(R.id.btn_get)
     Button btn_get;
-
-    @RestService
-    TybApi tybApi;
-
     @App
     TybApplication  application;
 
+    @Bean(CaptchaEvent.class)
+    CaptchaEvent captchaEvent;
     @Bean
-    AppService service;
+    AppService appService;
 
-    @RootContext
-    Context context;
+    @AfterInject
+    public void initData(){
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        try {
-             DB snappydb = DBFactory.open(this);
-            snappydb.put("name", "Jack Reacher");
-            snappydb.putInt("age", 42);
-            snappydb.putBoolean("single", true);
-            snappydb.put("books", new String[]{"One Shot", "Tripwire", "61 Hours"});
-
-            name   =  snappydb.get("name");
-            int      age    =  snappydb.getInt("age");
-            boolean  single =  snappydb.getBoolean("single");
-
-            books = snappydb.getArray("books", String.class);
-
-            snappydb.close();
-
-        } catch (SnappydbException e) {
-        }
     }
 
-
     @UiThread
-    public void onEvent(UserEvent userEvent){
-        Toast.makeText(this, userEvent.getUser(), Toast.LENGTH_LONG).show();
+    public void onEvent(Object event){
+        Toast.makeText(this, event.toString(), Toast.LENGTH_LONG).show();
     }
     @Click(R.id.btn_get)
     public void mybutton(){
-        service.getUser();
-//        Toast.makeText(this, name, Toast.LENGTH_LONG).show();
+        //第一种方式
+//        appService.get_captcha();
+        //第二种方式
+        captchaEvent.get_captcha();
     }
+
 
     @Override
     protected void onStart() {

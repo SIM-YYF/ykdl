@@ -1,4 +1,4 @@
-package com.ykdl.tangyoubang.RestClient.interceptor;
+package com.ykdl.tangyoubang.Rest.interceptor;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

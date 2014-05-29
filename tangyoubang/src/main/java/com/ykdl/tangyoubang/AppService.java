@@ -2,11 +2,15 @@ package com.ykdl.tangyoubang;
 
 
 
-import com.ykdl.tangyoubang.Events.UserEvent;
-import com.ykdl.tangyoubang.RestClient.TybApi;
+import com.ykdl.net.Client.RestHelper;
+import com.ykdl.tangyoubang.Rest.TybApi;
+import com.ykdl.tangyoubang.model.BaseEvent;
+import com.ykdl.tangyoubang.model.CaptchaEvent;
+import com.ykdl.tangyoubang.model.protocol.Captcha;
 
 import org.androidannotations.annotations.App;
 import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.rest.RestService;
 
@@ -22,24 +26,35 @@ public class AppService {
     @RestService
     public TybApi api;
     @App
-    public TybApplication application;
-    public final EventBus BUS = application.BUS;
+    public TybApplication  application;
 
     public static final String NETWORK = "NETWORK";
     public static final String CACHE = "CACHE";
 
-    @Background(serial = CACHE)
-    public String getUser() {
-        //从缓存中读取对象
-        BUS.post("cacheResult");
-        //从网络中获得数据
-        return getUserAsync();
+    //////////////////////////  第一种方式
+    @Background(serial = "get_captcha_id")
+    public void get_captcha(){
+        //获得生成的验证码id
+        Captcha captcha = api.get_captcha();
+        get_captcha_stream(captcha.captcha_id);
     }
-    @Background(serial = NETWORK)
-    public String getUserAsync(){
-        api.setHeader("username", "value");
-        return api.getUser("android");
+    @Background(serial = "show_captcha_stream")
+    public void get_captcha_stream(String captcha_id){
+        byte[]  bytes = api.show_captcha(captcha_id);
+        application.BUS.post(bytes);
     }
 
-
+    /////////////////////////// 第二种方式
+    @Background
+    public void get_captcha(BaseEvent.TybCallBack callBack){
+        //获得生成的验证码id
+//        String   str =  RestHelper.getRest().get("http://172.16.22.68:5000/tyb/api/v1/captcha/request", String.class).getBody();
+        Captcha captcha = api.get_captcha();
+        callBack.execute(captcha);
+    }
+    @Background
+    public void get_captcha_stream(BaseEvent.TybCallBack callBack, String captcha_id){
+        byte[]  bytes = api.show_captcha(captcha_id);
+        callBack.execute(bytes);
+    }
 }

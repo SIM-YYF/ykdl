@@ -1,6 +1,6 @@
-package com.ykdl.tangyoubang.RestClient;
+package com.ykdl.tangyoubang.Rest;
 
-import com.ykdl.tangyoubang.RestClient.interceptor.HttpBasicAuthenticatorInterceptor;
+import com.ykdl.tangyoubang.Rest.interceptor.HttpBasicAuthenticatorInterceptor;
 
 import org.androidannotations.annotations.rest.Get;
 import org.androidannotations.annotations.rest.Rest;

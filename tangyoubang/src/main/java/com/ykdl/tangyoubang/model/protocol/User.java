@@ -1,4 +1,4 @@
-package com.ykdl.tangyoubang.Events.models;
+package com.ykdl.tangyoubang.model.protocol;
 
 import org.json.JSONException;
 import org.json.JSONObject;
