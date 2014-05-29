@@ -1,1 +1,1 @@
-include ':tangyoubang'
+include ':tangyoubang', ':spring-android-plugin'

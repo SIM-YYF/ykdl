@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="spring-asm-3.0.7.RELEASE">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/tangyoubang/libs/spring-asm-3.0.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-android-plugin/libs/spring-asm-3.0.7.RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

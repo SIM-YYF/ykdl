@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="jackson-core-2.4.0-rc4-20140509.050732-4">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/tangyoubang/libs/jackson-core-2.4.0-rc4-20140509.050732-4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-android-plugin/libs/jackson-core-2.4.0-rc4-20140509.050732-4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
