@@ -5,6 +5,7 @@ import com.ykdl.tangyoubang.RestClient.TybApi;
 
 import org.androidannotations.annotations.App;
 import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.rest.RestService;
 
@@ -22,11 +23,21 @@ public class AppService {
     TybApplication  application;
    public final  EventBus  BUS = application.BUS;
 
+    @Bean
+    UserEvent  userEvent;
     @Background
     public void getUser(){
-        String json = api.getUser();
-        BUS.post(new UserEvent(json).builder());
+        String json = api.getGoods();
+        userEvent.builder(json);
+        BUS.post(userEvent);
     }
+    @Background
+    public void login(){
+        String json = api.login("fly80626", "fly80626");
+        userEvent.builder(json);
+        BUS.post(userEvent);
+    }
+
 
 
 

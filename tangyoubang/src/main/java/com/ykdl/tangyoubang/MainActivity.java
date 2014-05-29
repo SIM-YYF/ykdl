@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
         try {
 //            tybApi.setHeader("head1", "a");
 //            tybApi.setHeader("head2", "b");
-//            tybApi.getUser();
+
 
 
            DB snappydb = DBFactory.open(this);
@@ -75,12 +75,13 @@ public class MainActivity extends Activity {
 
 
     @UiThread
-    public void onEvent(UserEvent userEvent){
-        Toast.makeText(this, userEvent.getJson(), Toast.LENGTH_LONG).show();
+    public void onEvent(UserEvent  event){
+
+        Toast.makeText(this, event.getJson(), Toast.LENGTH_LONG).show();
     }
     @Click(R.id.btn_get)
     public void mybutton(){
-        service.getUser();
+        service.login();
 //        Toast.makeText(this, name, Toast.LENGTH_LONG).show();
     }
 

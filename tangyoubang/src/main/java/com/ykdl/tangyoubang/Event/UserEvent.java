@@ -1,8 +1,14 @@
 package com.ykdl.tangyoubang.Event;
 
+import android.content.Context;
+
+import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.UiThread;
+
 /**
  * Created by admin on 2014/5/10.
  */
+@EBean
 public class UserEvent {
 
     private String name = "小马";
@@ -32,13 +38,10 @@ public class UserEvent {
     public void setJson(String json) {
         this.json = json;
     }
+    public UserEvent(){}
 
-    public UserEvent(String json) {
-        this.json = json;
-    }
-
-
-    public UserEvent builder(){
-        return this;
+    @UiThread
+    public void builder(String json){
+       this.json = json;
     }
 }

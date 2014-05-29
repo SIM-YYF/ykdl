@@ -40,7 +40,7 @@ import java.util.Set;
 /**
  * Created by yuanwenfei on 2014/5/9.
  */
-@Rest(rootUrl = "www.baidu.com",converters = {MappingJackson2HttpMessageConverter.class, MappingJacksonHttpMessageConverter.class, GsonHttpMessageConverter.class, FormHttpMessageConverter.class, ByteArrayHttpMessageConverter
+@Rest(rootUrl = "http://shop.ecmobile.me",converters = {MappingJackson2HttpMessageConverter.class, MappingJacksonHttpMessageConverter.class, GsonHttpMessageConverter.class, FormHttpMessageConverter.class, ByteArrayHttpMessageConverter
 .class, StringHttpMessageConverter.class},interceptors = {HttpBasicAuthenticatorInterceptor.class})
 public  interface TybApi extends RestClientRootUrl, RestClientHeaders,RestClientSupport,RestClientErrorHandling {
 
@@ -57,8 +57,10 @@ public  interface TybApi extends RestClientRootUrl, RestClientHeaders,RestClient
 //    @RequiresAuthentication  //注意：设置它的同时，需要创建setAuthentication(HttpAuthentication httpAuthentication) 或者 setHttpBasicAuth(String username, String password)
 //    @RequiresCookie({"session"})
 //    @RequiresCookieInUrl({"session"})//将设置的Cookie追加到url中，来代替添加到header
-    @Get("")
-    String getUser();
+    @Get("/ecmobile/?url=home/data")
+    String getGoods();
+    @Post("/ecmobile/?url=user/signin&name={name}&password={password}")
+    String login(String name, String password);
 
     /**
      * Send a HEAD HTTP Method request. @Head annotated methods must return HttpHeaders.
