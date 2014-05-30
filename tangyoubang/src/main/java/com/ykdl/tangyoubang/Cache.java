@@ -13,6 +13,22 @@ public class Cache {
 //    public <T> T get(CacheKey key, Class<T> returnType) {
 //    }
     public void put(CacheKey key, Object value) {
-
+        //        try {
+//             DB snappydb = DBFactory.open(this);
+//            snappydb.put("name", "Jack Reacher");
+//            snappydb.putInt("age", 42);
+//            snappydb.putBoolean("single", true);
+//            snappydb.put("books", new String[]{"One Shot", "Tripwire", "61 Hours"});
+//
+//            name   =  snappydb.get("name");
+//            int      age    =  snappydb.getInt("age");
+//            boolean  single =  snappydb.getBoolean("single");
+//
+//            books = snappydb.getArray("books", String.class);
+//
+//            snappydb.close();
+//
+//        } catch (SnappydbException e) {
+//        }
     }
 }
