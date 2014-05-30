@@ -28,16 +28,15 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Created by yuanwenfei on 2014/5/9.
  */
-@Rest(rootUrl = "http://172.16.22.68:5000",converters = {MMappingJackson2HttpMessageConverter.class, MGsonHttpMessageConverter.class, MFormHttpMessageConverter.class, ByteArrayHttpMessageConverter
+@Rest(rootUrl = "https://ajax.googleapis.com/",converters = {MMappingJackson2HttpMessageConverter.class, MGsonHttpMessageConverter.class, MFormHttpMessageConverter.class, ByteArrayHttpMessageConverter
 .class, MStringHttpMessageConverter.class},interceptors = {HttpBasicAuthenticatorInterceptor.class})
 public  interface TybApi extends RestClientHeaders,RestClientSupport,RestClientErrorHandling {
-    @Get("/tyb/api/v1/captcha/request")
-    Captcha get_captcha();//请求验证码
+    @Get("ajax/services/search/web?v=1.0&q={query}")
+    String get_captcha(String query);//请求验证码
     @Get("/tyb/api/v1/captcha/show/{captcha_id}")
     @Accept(MediaType.IMAGE_JPEG)
     byte[] show_captcha(String captcha_id);//显示验证码图片流接口
     @Post("tyb/api/v1/captcha/verify?captcha_id={captcha_id}&code={code}")
     ResponseEntity<String> verify_captcha(String captcha_id, String code);//验证验证码接口
-
 
 }

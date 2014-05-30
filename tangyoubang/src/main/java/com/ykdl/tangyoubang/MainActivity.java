@@ -51,9 +51,9 @@ public class MainActivity extends Activity {
     @Click(R.id.btn_get)
     public void mybutton(){
         //第一种方式
-//        appService.get_captcha();
+        appService.get_captcha();
         //第二种方式
-        captchaEvent.get_captcha();
+//        captchaEvent.get_captcha();
     }
 
 

@@ -23,29 +23,29 @@ public class CaptchaEvent extends BaseEvent {
         super(context);
     }
 
-    public void get_captcha(){
-        appService.get_captcha(new TybCallBack() {
-            @Override
-            public void execute(Object json) {
-                String captcha_id = null;
-//                errorCallBack(json);
-                    captcha_id = ((Captcha)json).captcha_id;
-                    get_captcha_by_captchaId(captcha_id);
-            }
-        });
-    }
-
-    private void get_captcha_by_captchaId(String captcha_id){
-        appService.get_captcha_stream(new TybCallBack() {
-            @Override
-            public void execute(Object json) {
-                appService.application.BUS.post(json);
-//                  String str = json.toString();
-//                errorCallBack(json);
-//                BUS.post(json);
-            }
-        }, captcha_id);
-    }
+//    public void get_captcha(){
+//        appService.get_captcha(new TybCallBack() {
+//            @Override
+//            public void execute(Object json) {
+//                String captcha_id = null;
+////                errorCallBack(json);
+//                    captcha_id = ((Captcha)json).captcha_id;
+//                    get_captcha_by_captchaId(captcha_id);
+//            }
+//        });
+//    }
+//
+//    private void get_captcha_by_captchaId(String captcha_id){
+//        appService.get_captcha_stream(new TybCallBack() {
+//            @Override
+//            public void execute(Object json) {
+//                appService.application.BUS.post(json);
+////                  String str = json.toString();
+////                errorCallBack(json);
+////                BUS.post(json);
+//            }
+//        }, captcha_id);
+//    }
 
 
 }
