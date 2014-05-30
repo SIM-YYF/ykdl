@@ -30,8 +30,8 @@ public  interface TybApi extends RestClientHeaders,RestClientSupport,RestClientE
     @Get("/tyb/api/v1/captcha/request")
     Captcha get_captcha();//请求验证码
     @Get("/tyb/api/v1/captcha/show/{captcha_id}")
-//    byte[] show_captcha(String captcha_id);//显示验证码图片流接口
-    String show_captcha(String captcha_id);//显示验证码图片流接口
+    byte[] show_captcha(String captcha_id);//显示验证码图片流接口
+//    String show_captcha(String captcha_id);//显示验证码图片流接口
     @Post("tyb/api/v1/captcha/verify?captcha_id={captcha_id}&code={code}")
     ResponseEntity<String> verify_captcha(String captcha_id, String code);//验证验证码接口
 

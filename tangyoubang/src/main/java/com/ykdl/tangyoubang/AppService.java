@@ -76,9 +76,7 @@ public class AppService {
     }
     @Background(serial = "show_captcha_stream", id = "show_captcha_stream", delay = 500)
     public void get_captcha_stream(String captcha_id){
-//        byte[]  bytes = api.show_captcha(captcha_id);
-        String  bytes = api.show_captcha(captcha_id);
-//        Captcha captcha = api.get_captcha();
+        byte[]  bytes = api.show_captcha(captcha_id);
         bus.post(bytes);
 
     }
