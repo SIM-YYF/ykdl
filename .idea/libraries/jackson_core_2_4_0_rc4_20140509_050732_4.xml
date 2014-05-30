@@ -4,10 +4,6 @@
       <root url="jar://$PROJECT_DIR$/spring-android-plugin/libs/jackson-core-2.4.0-rc4-20140509.050732-4.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://G:/糖友帮框架/jackson-databind-2.4.0-rc4-20140529.045720-32-sources.jar!/" />
-      <root url="file://G:/糖友帮框架/jackson-core-master/src/main/java" />
-      <root url="file://G:/糖友帮框架/jackson-core-master/src/test/java" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
