@@ -44,6 +44,10 @@ public class AppService {
     @Bean
     public MRestClientErrorHandler handler;
 
+    @Bean
+    LogicErrorHandler  logicErrorHandler;
+
+
     @AfterInject
     public void init(){
         bus = application.BUS;
@@ -64,22 +68,29 @@ public class AppService {
         handler.setErrorHandler(mContext);
         api.setRestTemplate(restTemplate);
         api.setRestErrorHandler(handler);
+        logicErrorHandler.builder(mContext);
     }
 
-    @Background(serial = "get_captcha_id", id = "get_captcha_id")
-    public void get_captcha(){
-        //获得生成的验证码id
-        Captcha captcha = api.get_captcha();
-//        bus.post(captcha);
+    @Background
+    public void get_goods(){
+        String str = api.getGoods();
+        if(logicErrorHandler.isLogicError(str))return;
+        bus.post(str);
+    }
+
+//    @Background(serial = "get_captcha_id", id = "get_captcha_id")
+//    public void get_captcha(){
+//        //获得生成的验证码id
+//        Captcha captcha = api.get_captcha();
 //        //获得显示验证码图片流
-        get_captcha_stream(captcha.captcha_id);
-    }
-    @Background(serial = "show_captcha_stream", id = "show_captcha_stream", delay = 500)
-    public void get_captcha_stream(String captcha_id){
-        byte[]  bytes = api.show_captcha(captcha_id);
-        bus.post(bytes);
-
-    }
+//        get_captcha_stream(captcha.captcha_id);
+//    }
+//    @Background(serial = "show_captcha_stream", id = "show_captcha_stream", delay = 500)
+//    public void get_captcha_stream(String captcha_id){
+//        byte[]  bytes = api.show_captcha(captcha_id);
+//        bus.post(bytes);
+//
+//    }
 
     public void cancelTask(boolean isRunning, String ... task_ids){
         for(int i = 0; i < task_ids.length; i++){

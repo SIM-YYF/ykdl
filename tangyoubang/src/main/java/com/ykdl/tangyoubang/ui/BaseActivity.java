@@ -30,22 +30,13 @@ public abstract class BaseActivity extends FragmentActivity {
         bus = application.BUS;
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        bus.unregister(this);
-    }
+
+
 
     @Override
     protected void onStop() {
         super.onStop();
         bus.unregister(this);
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        bus.register(this);
     }
 
     @Override

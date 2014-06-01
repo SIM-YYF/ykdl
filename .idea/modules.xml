@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/android-pulltorefresh-plugin/android-pulltorefresh-plugin.iml" filepath="$PROJECT_DIR$/android-pulltorefresh-plugin/android-pulltorefresh-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-android-plugin/spring-android-plugin.iml" filepath="$PROJECT_DIR$/spring-android-plugin/spring-android-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/tangyoubang/tangyoubang.iml" filepath="$PROJECT_DIR$/tangyoubang/tangyoubang.iml" />
       <module fileurl="file://$PROJECT_DIR$/ykdl.iml" filepath="$PROJECT_DIR$/ykdl.iml" />

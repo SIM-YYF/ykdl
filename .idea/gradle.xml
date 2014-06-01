@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/android-pulltorefresh-plugin" />
             <option value="$PROJECT_DIR$/spring-android-plugin" />
             <option value="$PROJECT_DIR$/tangyoubang" />
           </set>

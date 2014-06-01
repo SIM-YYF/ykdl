@@ -23,17 +23,22 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 /**
  * Created by yuanwenfei on 2014/5/9.
  * 糖友帮所有网络协议接口
+ * http://shop.ecmobile.me/ecmobile/
+ * http://172.16.22.68:5000
  */
-@Rest(rootUrl = "http://172.16.22.68:5000",converters = {MappingJackson2HttpMessageConverter.class, GsonHttpMessageConverter.class, FormHttpMessageConverter.class, ByteArrayHttpMessageConverter
+@Rest(rootUrl = "http://shop.ecmobile.me",converters = {MappingJackson2HttpMessageConverter.class, GsonHttpMessageConverter.class, FormHttpMessageConverter.class, ByteArrayHttpMessageConverter
 .class, MStringHttpMessageConverter.class},interceptors = {HttpBasicAuthenticatorInterceptor.class})
 public  interface TybApi extends RestClientHeaders,RestClientSupport,RestClientErrorHandling {
-    @Get("/tyb/api/v1/captcha/request")
-    Captcha get_captcha();//请求验证码
-    @Get("/tyb/api/v1/captcha/show/{captcha_id}")
-    byte[] show_captcha(String captcha_id);//显示验证码图片流接口
+//    @Get("/tyb/api/v1/captcha/request")
+//    Captcha get_captcha();//请求验证码
+//    @Get("/tyb/api/v1/captcha/show/{captcha_id}")
+//    byte[] show_captcha(String captcha_id);//显示验证码图片流接口
 //    String show_captcha(String captcha_id);//显示验证码图片流接口
-    @Post("tyb/api/v1/captcha/verify?captcha_id={captcha_id}&code={code}")
-    ResponseEntity<String> verify_captcha(String captcha_id, String code);//验证验证码接口
+//    @Post("tyb/api/v1/captcha/verify?captcha_id={captcha_id}&code={code}")
+//    ResponseEntity<String> verify_captcha(String captcha_id, String code);//验证验证码接口
+
+    @Get("/ecmobile/?url=home/data")
+    String getGoods();
 
 
 }

@@ -3,6 +3,7 @@ package com.ykdl.tangyoubang.ui;
 
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.ykdl.tangyoubang.AppService;
 import com.ykdl.tangyoubang.R;
 import com.ykdl.tangyoubang.TybApplication;
+import com.ykdl.tangyoubang.model.Event;
 import com.ykdl.tangyoubang.ui.view.MyRelaterLayout;
 import com.ykdl.tangyoubang.ui.view.MyRelaterLayout_;
 
@@ -35,6 +37,7 @@ public class MainActivity extends BaseActivity {
     @ViewById(R.id.MyRelaterLayout_3)
     MyRelaterLayout relativeLayout_3;
 
+    private static final String TAG = "MainActivity";
 
     @AfterViews
     public void initView(){
@@ -49,12 +52,14 @@ public class MainActivity extends BaseActivity {
     }
     @UiThread
     public void onEvent(Object event){
+        Log.d(TAG, event.toString());
         Toast.makeText(this, event.toString(), Toast.LENGTH_LONG).show();
     }
 
     @Click(R.id.btn_get)
     public void mybutton(){
-        appService.get_captcha();
+//        appService.get_captcha();
+        appService.get_goods();
     }
 
 
