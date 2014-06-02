@@ -7,7 +7,8 @@ import android.content.Context;
 import com.ykdl.tangyoubang.Rest.TybApi;
 import com.ykdl.tangyoubang.Rest.handler.MResponseErrorHandler;
 import com.ykdl.tangyoubang.Rest.handler.MRestClientErrorHandler;
-import com.ykdl.tangyoubang.model.protocol.Captcha;
+import com.ykdl.tangyoubang.storage.Cache;
+import com.ykdl.tangyoubang.storage.TybDB;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.App;
@@ -18,7 +19,6 @@ import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.rest.RestService;
 import org.androidannotations.api.BackgroundExecutor;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -47,6 +47,11 @@ public class AppService {
     @Bean
     LogicErrorHandler  logicErrorHandler;
 
+    @Bean
+    public TybDB db;
+
+    @Bean
+    public Cache cache;
 
     @AfterInject
     public void init(){
@@ -71,11 +76,18 @@ public class AppService {
         logicErrorHandler.builder(mContext);
     }
 
-    @Background
+    @Background(serial = "cache", id = "get_goods_by_cache")
     public void get_goods(){
+        String str = cache.get(mContext, Cache.CacheKey.CAPTCHA, String.class);
+        bus.post("from Cache : " + str);
+        get_asyn_goods();
+    }
+    @Background(serial = "network", id = "get_goods_by_network")
+    public void get_asyn_goods(){
         String str = api.getGoods();
         if(logicErrorHandler.isLogicError(str))return;
-        bus.post(str);
+        cache.put(mContext, Cache.CacheKey.CAPTCHA, str);
+        bus.post("from network : " + str);
     }
 
 //    @Background(serial = "get_captcha_id", id = "get_captcha_id")

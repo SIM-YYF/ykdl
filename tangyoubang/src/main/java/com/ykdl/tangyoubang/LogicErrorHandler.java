@@ -33,7 +33,6 @@ public class LogicErrorHandler {
             isError = true;
             return isError;
         }
-
         try {
                 if (object instanceof String) {
                     JSONObject jsonObject = new JSONObject(object.toString());

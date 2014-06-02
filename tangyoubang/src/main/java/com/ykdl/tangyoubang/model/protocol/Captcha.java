@@ -2,6 +2,8 @@ package com.ykdl.tangyoubang.model.protocol;
 
 import com.ykdl.tangyoubang.model.Status;
 
+import java.io.Serializable;
+
 /**
  * 验证码模型数据
  */
